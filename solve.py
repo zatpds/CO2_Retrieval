@@ -1,4 +1,4 @@
-from .. import l2_afp
+import l2_afp
 import OCO2_Aerosol_Toolkit
 import OCO2_Solution_Toolkit
 import numpy as np
