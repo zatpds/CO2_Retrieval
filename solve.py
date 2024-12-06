@@ -44,69 +44,27 @@ def parallel_process_unit(aod, alh, l1bFile, metFile, IDPFile, L1bDict, date, n,
              L1bDict["Latitude"], L1bDict["Longitude"], sol_rec, aod, alh, flags, nums)
 
 
-place = 'Sasan'
+place = 'Riyadh'
 
 if place=='Riyadh':
     dates = [20161029, 20160826, 20160522, 20160319, 20160115]
-if place=='NewDelhi':
-    dates = [20151024, 20150904] # 20160110, 20160103,
-if place=='Sasan':
-    dates = [20141023]
-if place=='Cal':
-    dates = [20171008, 20171015, 20171022, 20180112, 20180425, 20180621, 20180628]
-    # Dates where no valid AOD data available are peeled off!
-    #
-if place=='LA':
-    dates = [20180808, 20180603, 20171125, 20171006] # Target mode on the city!
 
 for date in dates:
     OCO2_Aerosol_Toolkit.dirnew(str(date) + appen)
     print('Doing for date:%d' % date)
     mdl = OCO2_Aerosol_Toolkit.albedo_construc(date)
+    
     if place=='Riyadh':
         dirn = './Results_Riyadh/NN/'
-        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Riyadh/OCO/ND/L1b', 'L1b')
-        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Riyadh/OCO/ND/L2', 'L2')
+        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/L1b', 'L1b')
+        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/L2', 'L2')
         matFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/Riyadh',
                                                    'mat')
-        metFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Riyadh/OCO/ND/Met', 'Met')
-        IDPFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Riyadh/OCO/ND/IDP', 'IDP')
+        metFile = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/Met', 'Met')
+        IDPFile = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/L1b/IDP', 'IDP')
         lat1 = 20
         lat2 = 30
-    if place=='NewDelhi':
-        dirn = './Results_NewDelhi/NN/'
-        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/New_Delhi/OCO_Data/ND/L1b', 'L1b')
-        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/New_Delhi/OCO_Data/ND/L2', 'L2')
-        matFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/New_Delhi', 'mat')
-        metFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/New_Delhi/OCO_Data/ND/Met', 'Met')
-        IDPFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/New_Delhi/OCO_Data/ND/IDP', 'IDP')
-        lat1 = 20
-        lat2 = 30
-    if place=='Sasan':
-        dirn = './Results_Sasan/NN/'
-        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Plume_Cases/Sasan/OCO/L1b',
-                                                   'L1b')
-        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Plume_Cases/Sasan/OCO/L2', 'L2')
-        metFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Plume_Cases/Sasan/OCO/Met', 'Met')
-        IDPFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Plume_Cases/Sasan/OCO/IDP', 'IDP')
-        matFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/Plume_Sasan',
-                                                   'mat')
-        lat1 = 20
-        lat2 = 30
-    if place=='Cal':
-        dirn = './California/NN/'
-        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Los_Angeles/ND', 'L1b')
-        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Los_Angeles/ND', 'L2')
-        matFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/Los_Angeles/ND', 'mat')
-        lat1 = 32.7
-        lat2 = 37.8
-    if place=='LA':
-        dirn = './LA/NN/'
-        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Los_Angeles/TG', 'L1b')
-        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/Bulk_Data/Los_Angeles/TG', 'L2')
-        matFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/Los_Angeles/TG', 'mat')
-        lat1 = 32.7
-        lat2 = 37.8
+        
     L1bDict = OCO2_Aerosol_Toolkit.l1b_read(l1bFile, lat1, lat2)
     L1bDict = OCO2_Aerosol_Toolkit.remv_invalid_soundings(L1bDict)
     L1bDict = OCO2_Aerosol_Toolkit.remv_ocean_soundings(L1bDict)
@@ -118,6 +76,7 @@ for date in dates:
     # Since L1b dictionary is the most dense in terms of grid, we interpolate other data onto it...
     C_level = []
     M_level = []
+    
     for i in range(len(L1bDict["Latitude"])):
         C_level.append(OCO2_Aerosol_Toolkit.cont_level_eval(L1bDict, i, 0))
         M = []
@@ -126,11 +85,13 @@ for date in dates:
             M.append(OCO2_Aerosol_Toolkit.mid_level_eval_v2(L1bDict, i, j, [350, 450]))
             M.append(OCO2_Aerosol_Toolkit.mid_level_eval_v2(L1bDict, i, j, [550, 650]))
         M_level.append(M)
+        
     az = albedo * L1bDict['Zenith']
     aod, alh = OCO2_Solution_Toolkit.aod_alh_retrieval(C_level, M_level, az)
     nmax = 8
     processes = [mp.Process(target=parallel_process_unit, args=(aod, alh, l1bFile, metFile, IDPFile, L1bDict, date, n,
                                                                 nmax)) for n in range(nmax)]
+    
     for p in processes:
         p.start()
     for p in processes:
