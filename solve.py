@@ -56,12 +56,12 @@ for date in dates:
     
     if place=='Riyadh':
         dirn = './Results_Riyadh/NN/'
-        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/L1b', 'L1b')
-        l2File = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/L2', 'L2')
-        matFile = OCO2_Aerosol_Toolkit.search_file(date, '/net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/Riyadh',
+        l1bFile = OCO2_Aerosol_Toolkit.search_file(date, './Riyadh/L1b', 'L1b')
+        l2File = OCO2_Aerosol_Toolkit.search_file(date, './Riyadh/L2', 'L2')
+        matFile = OCO2_Aerosol_Toolkit.search_file(date, './net/fusi/raid06/shc/OCO_codes/MATLAB_Utilities/Riyadh',
                                                    'mat')
-        metFile = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/Met', 'Met')
-        IDPFile = OCO2_Aerosol_Toolkit.search_file(date, '/~/Riyadh/L1b/IDP', 'IDP')
+        metFile = OCO2_Aerosol_Toolkit.search_file(date, './Riyadh/Met', 'Met')
+        IDPFile = OCO2_Aerosol_Toolkit.search_file(date, './Riyadh/L1b/IDP', 'IDP')
         lat1 = 20
         lat2 = 30
         
